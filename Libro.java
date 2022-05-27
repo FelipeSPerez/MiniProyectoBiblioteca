@@ -1,6 +1,6 @@
 package version01;
 
-public class Libro {
+public abstract class Libro {
     
     private String titulo;
     private String nombreAutor;
