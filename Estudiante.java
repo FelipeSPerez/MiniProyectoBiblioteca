@@ -1,6 +1,7 @@
-package com.mycompany.miniproyecto;
 
-public class Estudiante extends Usuario implements Persona {
+import java.io.Serializable;
+
+public class Estudiante extends Usuario implements Persona,Serializable {
     //ESTUDIANTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 
     private String escuelaProcedencia;
@@ -49,5 +50,4 @@ public class Estudiante extends Usuario implements Persona {
     public String getDatos() {
         return super.getDatos() + escuelaProcedencia + "," + numeroDeControl;
     }
-
 }

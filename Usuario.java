@@ -1,8 +1,5 @@
-package com.mycompany.miniproyecto;
-
-public abstract class Usuario{
-
-    private String nombre;
+public abstract class Usuario {
+     private String nombre;
     private byte edad;
     private String telefonoFijo;
     private String telefonoPersonal;

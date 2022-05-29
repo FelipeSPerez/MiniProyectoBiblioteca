@@ -1,7 +1,8 @@
-package com.mycompany.miniproyecto;
 
-public class Docente extends Usuario implements Persona {
-    //DOCENTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
+import java.io.Serializable;
+
+public class Docente extends Usuario implements Serializable,Persona{
+     //DOCENTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 
     private String institucionProcedencia;
     private String matricula;
@@ -58,5 +59,4 @@ public class Docente extends Usuario implements Persona {
     public String getDatos() {
         return super.getDatos() + institucionProcedencia + "," + matricula + "," + departamento;
     }
-
 }

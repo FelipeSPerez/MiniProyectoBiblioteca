@@ -1,6 +1,7 @@
-package com.mycompany.miniproyecto;
 
-public class Comun extends Usuario implements Persona {
+import java.io.Serializable;
+
+public class Comun extends Usuario implements Persona,Serializable{
     //COMUN - REQUIERE UNICAMENTE DATOS POR HERENCIA
 
     //CONSTRUCTORES.....
@@ -30,4 +31,4 @@ public class Comun extends Usuario implements Persona {
         return super.getDatos();
     }
 
-}
+} 

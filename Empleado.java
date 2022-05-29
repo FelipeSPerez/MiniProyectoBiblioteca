@@ -1,7 +1,7 @@
-package com.mycompany.miniproyecto;
 
-public class Empleado implements Persona {
+import java.io.Serializable;
 
+public class Empleado implements Persona,Serializable{
     private String nombre;
     private String puesto;
     private String turno;
@@ -32,5 +32,4 @@ public class Empleado implements Persona {
     public String getDatos() {
         return nombre + "," + puesto + "," + turno;
     }
-
 }
