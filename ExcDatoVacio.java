@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 public class ExcDatoVacio extends Exception {
 
-    public void mensajeExc(String msg, String titulo) {
-        JOptionPane.showMessageDialog(null, msg, titulo, JOptionPane.ERROR_MESSAGE);
+    public void mensajeExc() {
+        JOptionPane.showMessageDialog(null, "Error:\nNo puedes dejar este dato en blanco.", "DATO VACIO", JOptionPane.ERROR_MESSAGE);
     }
 
 }
