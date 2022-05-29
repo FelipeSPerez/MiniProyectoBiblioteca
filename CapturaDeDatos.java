@@ -768,20 +768,470 @@ public class CapturaDeDatos {
 
     }
 
+    public Literario getLiterario() {
+        boolean error = false, salir = false;
+        String titulo = "";
+        String nombreAutor = "";
+        String isbn = "";
+        String editorial = "";
+        String condicion = "";
+        String genero = "";
+        String clasificacion = "";
+
+        //Ciclo para confirmacion
+        do {
+
+            //Validacion titulo
+            do {
+                try {
+                    titulo = leerCadena("Introduce el titulo del libro (OBLIGATORIO):");
+                    if (titulo.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    titulo = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion nombre autor
+            do {
+                try {
+                    nombreAutor = leerCadena("Introduce el nombre del autor del libro (OBLIGATORIO):");
+                    if (nombreAutor.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (nombreAutor.length() < 10) {
+                        error = true;
+                        throw new ExcMinimoTNombre();
+                    }
+                    String regex = ".*\\d+.*";
+                    Pattern pattern = Pattern.compile(regex);
+                    if (pattern.matcher(nombreAutor).matches()) {
+                        error = true;
+                        throw new ExcTipoDatoErroneo();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcMinimoTNombre e) {
+                    nombreAutor = "";
+                    e.mensajeExc();
+                } catch (ExcTipoDatoErroneo e) {
+                    nombreAutor = "";
+                    e.mensajeExc("Error:\nEstas registrando numeros en el nombre del autor del libro", "DATO ERRONEO");
+                } catch (Exception e) {
+                    nombreAutor = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion isbn
+            do {
+                try {
+                    isbn = leerCadena("Introduce el ISBN del libro (OBLIGATORIO):");
+                    if (isbn.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (isbn.length() != 10 && isbn.length() != 13) {
+                        error = true;
+                        throw new ExcMinimoTISBN();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcMinimoTISBN e) {
+                    isbn = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    nombreAutor = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion editorial
+            do {
+                try {
+                    editorial = leerCadena("Introduce la editorial del libro (OBLIGATORIO):");
+                    if (editorial.length() < 5) {
+                        error = true;
+                        throw new ExcMinimoTEditorial();
+                    }
+                    error = false;
+                } catch (ExcMinimoTEditorial e) {
+                    editorial = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    editorial = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion condicion
+            do {
+                try {
+                    condicion = leerCadena("Introduce la condicion en la que se encuentra el libro (OBLIGATORIO):");
+                    if (condicion.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    condicion = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+
+                //Validacion genero
+                do {
+                    try {
+                        genero = leerCadena("Introduce el genero del libro (OBLIGATORIO):");
+                        if (genero.isBlank()) {
+                            error = true;
+                            throw new ExcDatoVacio();
+                        }
+                        error = false;
+                    } catch (ExcDatoVacio e) {
+                        e.mensajeExc();
+                    } catch (Exception e) {
+                        genero = "";
+                        error = true;
+                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (error);
+
+                //Validacion clasificacion
+                do {
+                    try {
+                        clasificacion = leerCadena("Introduce la clasificacion de edad del libro (OBLIGATORIO):");
+                        if (clasificacion.isBlank()) {
+                            error = true;
+                            throw new ExcDatoVacio();
+                        }
+                        error = false;
+                    } catch (ExcDatoVacio e) {
+                        e.mensajeExc();
+                    } catch (Exception e) {
+                        clasificacion = "";
+                        error = true;
+                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (error);
+            } while (error);
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Titulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nGenero: " + genero + "\nClasificacion: " + clasificacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                Literario l = new Literario(titulo, nombreAutor, isbn, editorial, condicion, genero, clasificacion);
+                return l;
+            }
+
+        } while (!salir);
+
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Literario("EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON");
+
+    }
+
+    public Informativo getInformativo() {
+        boolean error = false, salir = false;
+        String titulo = "";
+        String nombreAutor = "";
+        String isbn = "";
+        String editorial = "";
+        String condicion = "";
+        String fechaPublicacion = "";
+
+        //Ciclo para confirmacion
+        do {
+
+            //Validacion titulo
+            do {
+                try {
+                    titulo = leerCadena("Introduce el titulo del libro (OBLIGATORIO):");
+                    if (titulo.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    titulo = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion nombre autor
+            do {
+                try {
+                    nombreAutor = leerCadena("Introduce el nombre del autor del libro (OBLIGATORIO):");
+                    if (nombreAutor.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (nombreAutor.length() < 10) {
+                        error = true;
+                        throw new ExcMinimoTNombre();
+                    }
+                    String regex = ".*\\d+.*";
+                    Pattern pattern = Pattern.compile(regex);
+                    if (pattern.matcher(nombreAutor).matches()) {
+                        error = true;
+                        throw new ExcTipoDatoErroneo();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcMinimoTNombre e) {
+                    nombreAutor = "";
+                    e.mensajeExc();
+                } catch (ExcTipoDatoErroneo e) {
+                    nombreAutor = "";
+                    e.mensajeExc("Error:\nEstas registrando numeros en el nombre del autor del libro", "DATO ERRONEO");
+                } catch (Exception e) {
+                    nombreAutor = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion isbn
+            do {
+                try {
+                    isbn = leerCadena("Introduce el ISBN del libro (OBLIGATORIO):");
+                    if (isbn.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (isbn.length() != 10 && isbn.length() != 13) {
+                        error = true;
+                        throw new ExcMinimoTISBN();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcMinimoTISBN e) {
+                    isbn = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    nombreAutor = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion editorial
+            do {
+                try {
+                    editorial = leerCadena("Introduce la editorial del libro (OBLIGATORIO):");
+                    if (editorial.length() < 5) {
+                        error = true;
+                        throw new ExcMinimoTEditorial();
+                    }
+                    error = false;
+                } catch (ExcMinimoTEditorial e) {
+                    editorial = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    editorial = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion condicion
+            do {
+                try {
+                    condicion = leerCadena("Introduce la condicion en la que se encuentra el libro (OBLIGATORIO):");
+                    if (condicion.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    condicion = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+
+                //Validacion fechaPublicacion
+                do {
+                    try {
+                        fechaPublicacion = leerCadena("Introduce la fecha de publicacion del libro (OBLIGATORIO):");
+                        if (fechaPublicacion.isBlank()) {
+                            error = true;
+                            throw new ExcDatoVacio();
+                        }
+                        error = false;
+                    } catch (ExcDatoVacio e) {
+                        e.mensajeExc();
+                    } catch (Exception e) {
+                        fechaPublicacion = "";
+                        error = true;
+                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (error);
+
+            } while (error);
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Titulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nFecha de publicacion: " + fechaPublicacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                Informativo i = new Informativo(titulo, nombreAutor, isbn, editorial, condicion, fechaPublicacion);
+                return i;
+            }
+
+        } while (!salir);
+
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Informativo("EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON");
+
+    }
+
+    public Empleado getEmpleado() {
+        boolean error = false, salir = false;
+        String nombre = "";
+        String puesto = "";
+        String turno = "";
+
+        //Ciclo para validacion final
+        do {
+
+            //Validacion nombre
+            do {
+                try {
+                    nombre = leerCadena("Introduce el nombre del empleado (OBLIGATORIO):");
+                    if (nombre.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (nombre.length() < 10) {
+                        error = true;
+                        throw new ExcMinimoTNombre();
+                    }
+                    String regex = ".*\\d+.*";
+                    Pattern pattern = Pattern.compile(regex);
+                    if (pattern.matcher(nombre).matches()) {
+                        error = true;
+                        throw new ExcTipoDatoErroneo();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcMinimoTNombre e) {
+                    nombre = "";
+                    e.mensajeExc();
+                } catch (ExcTipoDatoErroneo e) {
+                    nombre = "";
+                    e.mensajeExc("Error:\nEstas registrando numeros en el nombre del usuario", "DATO ERRONEO");
+                } catch (Exception e) {
+                    nombre = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion puesto
+            do {
+                try {
+                    puesto = leerCadena("Introduce el puesto del empleado (OBLIGATORIO):");
+                    if (puesto.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    nombre = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion turno
+            do {
+                try {
+                    turno = leerCadena("Introduce el turno en el que trabaja el empleado (OBLIGATORIO):");
+                    if (turno.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (turno.equalsIgnoreCase("matutino") || turno.equalsIgnoreCase("vespertino")) {
+                        error = true;
+                        throw new ExcTurnoEmpleado();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcTurnoEmpleado e) {
+                    turno = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    turno = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Nombre: " + nombre + "\nPuesto: " + puesto + "\nTurno: " + turno + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                Empleado e = new Empleado(nombre, puesto, turno);
+                return e;
+            }
+
+        } while (!salir);
+
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Empleado("EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON");
+
+    }
+    
+    public Prestamo getPrestamo() {
+        
+    }
+    
     private byte leerByte(String msg) {
         return Byte.parseByte(JOptionPane.showInputDialog(msg));
     }
 
-    private int leerEntero(String msg) {
-        return Integer.parseInt(JOptionPane.showInputDialog(msg));
-    }
-
     private String leerCadena(String msg) {
         return JOptionPane.showInputDialog(msg);
-    }
-
-    private double leerDoble(String msg) {
-        return Double.parseDouble(JOptionPane.showInputDialog(msg));
     }
 
 }
