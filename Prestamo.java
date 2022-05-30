@@ -143,7 +143,24 @@ public class Prestamo {
 
     //Metodo para guardar los datos en un archivo de texto en la clase ProcesarPrestamo
     public String EntradaPrestamo() {
-        return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor() + "," + l4.getTitulo() + "," + l4.getNombreAutor() + "," + l5.getTitulo() + "," + l5.getNombreAutor() + "," + l6.getTitulo() + "," + l6.getNombreAutor() + "," + l7.getTitulo() + "," + l7.getNombreAutor();
+        switch (this.cantidadLibrosAPrestar) {
+            case 1:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor();
+            case 2:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor();
+            case 3:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor();
+            case 4:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor() + "," + l4.getTitulo() + "," + l4.getNombreAutor();
+            case 5:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor() + "," + l4.getTitulo() + "," + l4.getNombreAutor() + "," + l5.getTitulo() + "," + l5.getNombreAutor();
+            case 6:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor() + "," + l4.getTitulo() + "," + l4.getNombreAutor() + "," + l5.getTitulo() + "," + l5.getNombreAutor() + "," + l6.getTitulo() + "," + l6.getNombreAutor();
+            case 7:
+                return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno + "," + l1.getTitulo() + "," + l1.getNombreAutor() + "," + l2.getTitulo() + "," + l2.getNombreAutor() + "," + l3.getTitulo() + "," + l3.getNombreAutor() + "," + l4.getTitulo() + "," + l4.getNombreAutor() + "," + l5.getTitulo() + "," + l5.getNombreAutor() + "," + l6.getTitulo() + "," + l6.getNombreAutor() + "," + l7.getTitulo() + "," + l7.getNombreAutor();
+            default:
+                return "error";
+        }
     }
 
 }
