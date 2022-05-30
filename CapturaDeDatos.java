@@ -253,7 +253,7 @@ public class CapturaDeDatos {
         do {
 
             //Lectura de los datos
-            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar();
+            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar("usuario 'comun'", (byte) 3);
             String fechaInicioPrestamo = leerFechaInicioPrestamo();
             String fechaEsperadaRetorno = leerFechaEsperadaRetorno();
             //Los siguientes objetos deben inicializarse al igual que todas las variables anteriores
@@ -311,7 +311,7 @@ public class CapturaDeDatos {
         do {
 
             //Validacion para la cantidad de libros a prestar
-            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar();
+            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar("estudiante", (byte) 5);
             String fechaInicioPrestamo = leerFechaInicioPrestamo();
             String fechaEsperadaRetorno = leerFechaEsperadaRetorno();
             //Los siguientes objetos deben inicializarse como todas las variables anteriores
@@ -388,7 +388,7 @@ public class CapturaDeDatos {
         //Ciclo para validacion
         do {
 
-            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar();
+            byte cantidadLibrosAPrestar = leerCantidadLibrosAPrestar("docente", (byte) 7);
             String fechaInicioPrestamo = leerFechaInicioPrestamo();
             String fechaEsperadaRetorno = leerFechaEsperadaRetorno();
             //Los siguientes objetos deben inicializarse como todas las variables anteriores
@@ -1056,7 +1056,7 @@ public class CapturaDeDatos {
         return turno;
     }
 
-    private byte leerCantidadLibrosAPrestar() {
+    private byte leerCantidadLibrosAPrestar(String tipo, byte cantidadMaxima) {
         byte cantidadLibrosAPrestar = 0;
         do {
             try {
@@ -1069,7 +1069,7 @@ public class CapturaDeDatos {
                     error = true;
                     throw new ExcCantidadLibrosNegativa();
                 }
-                if (cantidadLibrosAPrestar > 3) {
+                if (cantidadLibrosAPrestar > cantidadMaxima) {
                     error = true;
                     throw new ExcLimiteLibros();
                 }
@@ -1081,7 +1081,7 @@ public class CapturaDeDatos {
                 e.mensajeExc();
             } catch (ExcLimiteLibros e) {
                 cantidadLibrosAPrestar = 0;
-                e.mensajeExc("Error:\nUn usuario 'comun' solo puede pedir un maximo de 3 libros.");
+                e.mensajeExc("Error:\nUn " + tipo + " solo puede pedir un maximo de " + cantidadMaxima + " libros.");
             } catch (Exception e) {
                 cantidadLibrosAPrestar = 0;
                 error = true;
@@ -1160,7 +1160,7 @@ public class CapturaDeDatos {
         Libro l = new Informativo("", "", "", "", "", "");
         do {
             try {
-            int opcionSeleccionada = JOptionPane.showOptionDialog(null, "Has click en la opcion deseada:", "MENU PRINCIPAL", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+            int opcionSeleccionada = JOptionPane.showOptionDialog(null, "¿Que tipo de libro es " + numeroLibro + " a registrar?\n\nHas click en la opcion deseada:", "SELECCIONAR TIPO DE LIBRO", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
             if (opcionSeleccionada == 0) {
                 l = getLiterario();
             }
