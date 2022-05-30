@@ -1,11 +1,40 @@
 package version01;
 
 import javax.swing.JOptionPane;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CapturaDeDatos {
 
+    /*IMPORTANTE LEER
+    Este codigo es demasiado grande debido a todos los ciclos, excepciones y validaciones
+    para la captura de datos.
+    Cada metodo tiene la siguiente "estructura":
+    
+    //Un ciclo do-while principal para para ciclar el programa en caso de que se haya cometido uno o varios errores
+    do {
+    
+    
+        //Un ciclo do-while para cada uno de los atributos/variables que se leen
+        do {
+            
+            //Un try donde se lee el atributo y se toman en cuenta las validaciones
+            //y excepciones que se requieren
+            try {
+                *
+                *Codigo de lectura y validaciones
+                *
+            } catch (ExcepcionX e) {
+                *
+                *Codigo de excepcion
+                *
+            }
+    
+        } while (error)
+    
+    
+    } while (!salir)
+    */
+    
     //Metodo para obtener
     public Comun getComun() {
         boolean error = false, salir = false;
@@ -1090,7 +1119,7 @@ public class CapturaDeDatos {
                             throw new ExcErrorFormatoFecha();
                         }
                         error = false;
-                    } catch(ExcErrorFormatoFecha e) {
+                    } catch (ExcErrorFormatoFecha e) {
                         fechaPublicacion = "";
                         e.mensajeExc();
                     } catch (ExcDatoVacio e) {
@@ -1518,13 +1547,1366 @@ public class CapturaDeDatos {
         return new Prestamo(c, emp, cantidadLibrosAPrestar, "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", l1);
     }
 
-//    public Prestamo getPrestamo(Estudiante e, Empleado emp) {
-//        
-//    }
-//
-//    public Prestamo getPrestamo(Docente d, Empleado emp) {
-//        
-//    }
+    public Prestamo getPrestamo(Estudiante est, Empleado emp) {
+        boolean error = false, salir = false;
+        short cantidadLibrosAPrestar = 0;
+        String fechaInicioPrestamo = "";
+        String fechaEsperadaRetorno = "";
+        //Los siguientes objetos deben inicializarse como todas las variables anteriores
+        Libro l1 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l2 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l3 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l4 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l5 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+
+        //Ciclo para validacion
+        do {
+
+            //Validacion para la cantidad de libros a prestar
+            do {
+                try {
+                    cantidadLibrosAPrestar = leerShort("Introduce la cantidad de libros a prestar (OBLIGATORIO):");
+                    if (cantidadLibrosAPrestar == 0) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (cantidadLibrosAPrestar < 1) {
+                        error = true;
+                        throw new ExcCantidadLibrosNegativa();
+                    }
+                    if (cantidadLibrosAPrestar > 5) {
+                        error = true;
+                        throw new ExcLimiteLibros();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcCantidadLibrosNegativa e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc();
+                } catch (ExcLimiteLibros e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc("Error:\nUn estudiante solo puede pedir un maximo de 5 libros.");
+                } catch (Exception e) {
+                    cantidadLibrosAPrestar = 0;
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que estes ingresando letras o simbolos en la cantidad de libros", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha de inicio del prestamo
+            do {
+                try {
+                    fechaInicioPrestamo = leerCadena("Introduce la fecha de incio del prestamo (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaInicioPrestamo.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaInicioPrestamo.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaInicioPrestamo.charAt(2) != '/' || fechaInicioPrestamo.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaInicioPrestamo = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaInicioPrestamo = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha esperada de retorno
+            do {
+                try {
+                    fechaEsperadaRetorno = leerCadena("Introduce la fecha de retorno esperado del libro (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaEsperadaRetorno.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaEsperadaRetorno.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaEsperadaRetorno.charAt(2) != '/' || fechaEsperadaRetorno.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaEsperadaRetorno = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaEsperadaRetorno = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Ciclo para la introduccion de datos de cada libro a prestar
+            byte tipo;
+            switch (cantidadLibrosAPrestar) {
+                case 1:
+                    //Ciclo para preguntar el tipo del libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es el libro a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 2:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 3:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 4:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 5:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del quinto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL QUINTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l5 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l5 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+            }
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + est.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                switch (cantidadLibrosAPrestar) {
+                    case 1:
+                        Prestamo p = new Prestamo(est, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1);
+                        return p;
+                    case 2:
+                        Prestamo p1 = new Prestamo(est, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2);
+                        return p1;
+                    case 3:
+                        Prestamo p2 = new Prestamo(est, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3);
+                        return p2;
+                    case 4:
+                        Prestamo p3 = new Prestamo(est, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4);
+                        return p3;
+                    case 5:
+                        Prestamo p4 = new Prestamo(est, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4, l5);
+                        return p4;
+                }
+            }
+
+        } while (!salir);
+
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Prestamo(est, emp, cantidadLibrosAPrestar, "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", l1, l2, l3, l4, l5);
+    }
+
+    public Prestamo getPrestamo(Docente d, Empleado emp) {
+        boolean error = false, salir = false;
+        short cantidadLibrosAPrestar = 0;
+        String fechaInicioPrestamo = "";
+        String fechaEsperadaRetorno = "";
+        //Los siguientes objetos deben inicializarse como todas las variables anteriores
+        Libro l1 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l2 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l3 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l4 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l5 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l6 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l7 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+
+        //Ciclo para validacion
+        do {
+
+            //Validacion para la cantidad de libros a prestar
+            do {
+                try {
+                    cantidadLibrosAPrestar = leerShort("Introduce la cantidad de libros a prestar (OBLIGATORIO):");
+                    if (cantidadLibrosAPrestar == 0) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (cantidadLibrosAPrestar < 1) {
+                        error = true;
+                        throw new ExcCantidadLibrosNegativa();
+                    }
+                    if (cantidadLibrosAPrestar > 5) {
+                        error = true;
+                        throw new ExcLimiteLibros();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcCantidadLibrosNegativa e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc();
+                } catch (ExcLimiteLibros e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc("Error:\nUn estudiante solo puede pedir un maximo de 5 libros.");
+                } catch (Exception e) {
+                    cantidadLibrosAPrestar = 0;
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que estes ingresando letras o simbolos en la cantidad de libros", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha de inicio del prestamo
+            do {
+                try {
+                    fechaInicioPrestamo = leerCadena("Introduce la fecha de incio del prestamo (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaInicioPrestamo.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaInicioPrestamo.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaInicioPrestamo.charAt(2) != '/' || fechaInicioPrestamo.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaInicioPrestamo = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaInicioPrestamo = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha esperada de retorno
+            do {
+                try {
+                    fechaEsperadaRetorno = leerCadena("Introduce la fecha de retorno esperado del libro (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaEsperadaRetorno.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaEsperadaRetorno.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaEsperadaRetorno.charAt(2) != '/' || fechaEsperadaRetorno.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaEsperadaRetorno = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaEsperadaRetorno = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Ciclo para la introduccion de datos de cada libro a prestar
+            byte tipo;
+            switch (cantidadLibrosAPrestar) {
+                case 1:
+                    //Ciclo para preguntar el tipo del libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es el libro a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 2:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 3:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 4:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 5:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del quinto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL QUINTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l5 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l5 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+                case 6:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del quinto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL QUINTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l5 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l5 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del sexto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEXTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l6 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l6 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+                case 7:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del cuarto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL CUARTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l4 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l4 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del quinto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL QUINTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l5 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l5 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del sexto libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEXTO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l6 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l6 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del septimo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEPTIMO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l7 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l7 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+            }
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + d.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\nLibro 6: " + l6.getTitulo() + "\nLibro 7: " + l7.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                switch (cantidadLibrosAPrestar) {
+                    case 1:
+                        Prestamo p = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1);
+                        return p;
+                    case 2:
+                        Prestamo p1 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2);
+                        return p1;
+                    case 3:
+                        Prestamo p2 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3);
+                        return p2;
+                    case 4:
+                        Prestamo p3 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4);
+                        return p3;
+                    case 5:
+                        Prestamo p4 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4, l5);
+                        return p4;
+                    case 6:
+                        Prestamo p5 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4, l5, l6);
+                        return p5;
+                    case 7:
+                        Prestamo p6 = new Prestamo(d, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3, l4, l5, l6, l7);
+                        return p6;
+                }
+            }
+
+        } while (!salir);
+
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Prestamo(d, emp, cantidadLibrosAPrestar, "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", l1, l2, l3, l4, l5, l6, l7);
+    }
+
     private byte leerByte(String msg) {
         return Byte.parseByte(JOptionPane.showInputDialog(msg));
     }
