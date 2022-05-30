@@ -1080,12 +1080,19 @@ public class CapturaDeDatos {
                 //Validacion fechaPublicacion
                 do {
                     try {
-                        fechaPublicacion = leerCadena("Introduce la fecha de publicacion del libro (OBLIGATORIO):");
+                        fechaPublicacion = leerCadena("Introduce la fecha de publicacion del libro (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
                         if (fechaPublicacion.isBlank()) {
                             error = true;
                             throw new ExcDatoVacio();
                         }
+                        if (fechaPublicacion.charAt(2) != '/' || fechaPublicacion.charAt(5) != '/') {
+                            error = true;
+                            throw new ExcErrorFormatoFecha();
+                        }
                         error = false;
+                    } catch(ExcErrorFormatoFecha e) {
+                        fechaPublicacion = "";
+                        e.mensajeExc();
                     } catch (ExcDatoVacio e) {
                         e.mensajeExc();
                     } catch (Exception e) {
@@ -1186,7 +1193,7 @@ public class CapturaDeDatos {
                         error = true;
                         throw new ExcDatoVacio();
                     }
-                    if (turno.equalsIgnoreCase("matutino") || turno.equalsIgnoreCase("vespertino")) {
+                    if (!(turno.equalsIgnoreCase("matutino") || turno.equalsIgnoreCase("vespertino"))) {
                         error = true;
                         throw new ExcTurnoEmpleado();
                     }
@@ -1300,7 +1307,7 @@ public class CapturaDeDatos {
             //Validacion para la fecha esperada de retorno
             do {
                 try {
-                    fechaEsperadaRetorno = leerCadena("Introduce la fecha de incio del prestamo (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    fechaEsperadaRetorno = leerCadena("Introduce la fecha de retorno esperado del libro (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
                     if (fechaEsperadaRetorno.isBlank()) {
                         error = true;
                         throw new ExcDatoVacio();
@@ -1504,7 +1511,7 @@ public class CapturaDeDatos {
             }
 
         } while (!salir);
-        
+
         //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
         //piensa que hay forma en que el programa no retorne nada.
         //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
