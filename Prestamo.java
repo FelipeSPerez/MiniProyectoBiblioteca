@@ -1,6 +1,5 @@
-package version01;
-
 public class Prestamo {
+
 
     private Usuario user;
     private Empleado employee;

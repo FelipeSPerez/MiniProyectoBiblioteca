@@ -1,5 +1,3 @@
-package version01;
-
 public class Literario extends Libro {
     
     private String genero;
@@ -24,7 +22,7 @@ public class Literario extends Libro {
     //TOSTRING
     public String displayLibros() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.displayLibros());
+        sb.append(super.getDatos());
         sb.append("Literario{");
         sb.append("genero=").append(genero);
         sb.append(", clasificacion=").append(clasificacion);
@@ -33,7 +31,7 @@ public class Literario extends Libro {
     }
 
     public String EntradaLibros() {
-        return super.EntradaLibros() + "Literario{" + "genero=" + genero + ", clasificacion=" + clasificacion + '}';
+        return super.getDatos() + "," + genero + "," + clasificacion ;
     }
     
 }

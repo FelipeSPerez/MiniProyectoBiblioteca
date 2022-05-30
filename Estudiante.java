@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 
-public class Estudiante extends Usuario implements Persona,Serializable {
+public class Estudiante extends Usuario implements Persona{
     //ESTUDIANTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 
     private String escuelaProcedencia;

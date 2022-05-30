@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 
-public class Comun extends Usuario implements Persona,Serializable{
+public class Comun extends Usuario implements Persona{
     //COMUN - REQUIERE UNICAMENTE DATOS POR HERENCIA
 
     //CONSTRUCTORES.....

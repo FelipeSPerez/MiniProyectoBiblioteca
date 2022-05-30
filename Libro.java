@@ -1,5 +1,3 @@
-package version01;
-
 public abstract class Libro {
     
     private String titulo;
@@ -8,7 +6,6 @@ public abstract class Libro {
     private String editorial;
     private String condicion;
 
-    //CONSTRUCTORES
     public Libro(String titulo, String nombreAutor, String isbn, String editorial, String condicion) {
         this.titulo = titulo;
         this.nombreAutor = nombreAutor;
@@ -16,8 +13,7 @@ public abstract class Libro {
         this.editorial = editorial;
         this.condicion = condicion;
     }
-    
-    //GETTERS
+
     public String getTitulo() {
         return titulo;
     }
@@ -37,22 +33,12 @@ public abstract class Libro {
     public String getCondicion() {
         return condicion;
     }
-    
-    //TOSTRING
-    public String displayLibros() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Libro{");
-        sb.append("titulo=").append(titulo);
-        sb.append(", nombreAutor=").append(nombreAutor);
-        sb.append(", isbn=").append(isbn);
-        sb.append(", editorial=").append(editorial);
-        sb.append(", condicion=").append(condicion);
-        sb.append('}');
-        return sb.toString();
-    }
 
-    public String EntradaLibros() {
-        return "Libro{" + "titulo=" + titulo + ", nombreAutor=" + nombreAutor + ", isbn=" + isbn + ", editorial=" + editorial + ", condicion=" + condicion + ", ";
-    }   
+    public String getDatos() {
+        return titulo + "," + nombreAutor +","+ isbn + "," + editorial + "," + condicion;
+    }
+    
+    
+    
     
 }

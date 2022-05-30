@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 
-public class Docente extends Usuario implements Serializable,Persona{
+public class Docente extends Usuario implements Persona{
      //DOCENTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 
     private String institucionProcedencia;
@@ -19,7 +19,7 @@ public class Docente extends Usuario implements Serializable,Persona{
 
     //CONSTRUCTOR 02 - Atributos propios y por herencia menos correo...
     public Docente(String nombre, byte edad, String telefonoFijo, String telefonoPersonal, String domicilio, String institucionProcedencia, String matricula, String departamento) {
-        super(nombre, edad, telefonoFijo, telefonoPersonal, domicilio);
+       super(nombre, edad, telefonoFijo, telefonoPersonal, domicilio);
         this.institucionProcedencia = institucionProcedencia;
         this.matricula = matricula;
         this.departamento = departamento;
