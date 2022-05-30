@@ -1,8 +1,11 @@
+package version01;
+
 public class Prestamo {
+
     //Atributos
     private Usuario user;
     private Empleado employee;
-    private short cantidadLibrosAPrestar;
+    private byte cantidadLibrosAPrestar;
     private String fechaInicioPrestamo;
     private String fechaEsperadaRetorno;
     private Libro l1;
@@ -15,7 +18,7 @@ public class Prestamo {
 
     //CONSTRUCTORES
     //Caso 01. solo se pide un libro
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -25,7 +28,7 @@ public class Prestamo {
     }
 
     //Caso 02. Se piden dos libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -36,7 +39,7 @@ public class Prestamo {
     }
 
     //Caso 03. Se piden tres libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -48,7 +51,7 @@ public class Prestamo {
     }
 
     //Caso 04. Se piden cuatros libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -61,7 +64,7 @@ public class Prestamo {
     }
 
     //Caso 05. Se piden cinco libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -75,7 +78,7 @@ public class Prestamo {
     }
 
     //Caso 06. Se piden seis libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5, Libro l6) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5, Libro l6) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
@@ -90,7 +93,7 @@ public class Prestamo {
     }
 
     //Caso 07. Se piden siete libros
-    public Prestamo(Usuario user, Empleado employee, short cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5, Libro l6, Libro l7) {
+    public Prestamo(Usuario user, Empleado employee, byte cantidadLibrosAPrestar, String fechaInicioPrestamo, String fechaEsperadaRetorno, Libro l1, Libro l2, Libro l3, Libro l4, Libro l5, Libro l6, Libro l7) {
         this.user = user;
         this.employee = employee;
         this.cantidadLibrosAPrestar = cantidadLibrosAPrestar;
