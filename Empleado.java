@@ -2,6 +2,7 @@
 import java.io.Serializable;
 
 public class Empleado implements Persona,Serializable{
+    //Atributos 
     private String nombre;
     private String puesto;
     private String turno;

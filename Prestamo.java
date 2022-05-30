@@ -1,6 +1,5 @@
 public class Prestamo {
-
-
+    //Atributos
     private Usuario user;
     private Empleado employee;
     private short cantidadLibrosAPrestar;

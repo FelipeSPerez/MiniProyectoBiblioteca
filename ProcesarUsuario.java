@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
 
 
 public class ProcesarUsuario{
-       PrintWriter OutputStream;
+    //Atributos
+    PrintWriter OutputStream;
     Scanner inputStream;
     String fileName;
     File f;
@@ -26,7 +27,7 @@ public class ProcesarUsuario{
         try {
             if (!f.exists()) {
                 OutputStream = new PrintWriter(new FileOutputStream(fileName, true));
-                OutputStream.println(header);
+                OutputStream.print(header);
                 OutputStream.close();
                 JOptionPane.showMessageDialog(null,"Se creó archivo: "+f.getName());
             } else {
@@ -39,17 +40,20 @@ public class ProcesarUsuario{
     
     public void leerArchivo(){
         String linea;
+        String cadena = "";
         try {
             inputStream = new Scanner(new File(fileName));
             linea = inputStream.nextLine();
             JOptionPane.showMessageDialog(null,linea);
             while(inputStream.hasNextLine()){
                 linea = inputStream.nextLine();
-                JOptionPane.showMessageDialog(null,linea); 
+                cadena += linea+"\n";
             }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null,"Tipo Excepcion: " + ex.getClass().getSimpleName());
         }
+        JOptionPane.showMessageDialog(null, cadena);
+        JOptionPane.showMessageDialog(null,"Se termino de leer el archivo: "+this.fileName);// Se cierra el flujo de muestreo de datos en el archivo 
     }
     
     public void agregar(Usuario u){

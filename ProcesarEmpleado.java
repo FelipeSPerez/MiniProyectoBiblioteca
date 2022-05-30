@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
 
 public class ProcesarEmpleado {
+    //Atributos
     private String fileName;
     
     //Este es el contructor Principal el cual dice si esta el archivo binario o no si es así lo creá
@@ -36,17 +37,20 @@ public class ProcesarEmpleado {
     public void leerArchivoEmple(){
         ObjectInputStream intputstream = null;//Aquí se abre el flujo de muestreo de datos en archivo 
         Empleado em;
+        String cadena = "";
         try {
             intputstream = new ObjectInputStream(new FileInputStream(this.fileName));
             while(true){
                     em = (Empleado) intputstream.readObject();//Aquí se lee el objeto a mostrar en pantalla
-                    JOptionPane.showMessageDialog(null, em.getDatos());
+                    cadena += em.getDatos()+"\n";
             }
         } catch (FileNotFoundException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null,"Tipo de Excepcion: "+ex.getClass().getSimpleName());
         } catch(IOException ex){
-            JOptionPane.showMessageDialog(null,"Se termino de leer el archivo: "+this.fileName);// Se cierra el flujo de muestreo de datos en el archivo 
-        }       
+           
+        }
+        JOptionPane.showMessageDialog(null, cadena);
+        JOptionPane.showMessageDialog(null,"Se termino de leer el archivo: "+this.fileName);// Se cierra el flujo de muestreo de datos en el archivo 
     }
     
     //metodo que agrega datos al archivo binario

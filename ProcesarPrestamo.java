@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 
 public class ProcesarPrestamo {
+    //Atributos
     PrintWriter OutputStream;
     Scanner inputStream;
     String fileName;

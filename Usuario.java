@@ -2,7 +2,8 @@
 import java.io.Serializable;
 
 public abstract class Usuario implements Serializable{
-     private String nombre;
+    //Atributos 
+    private String nombre;
     private byte edad;
     private String telefonoFijo;
     private String telefonoPersonal;
