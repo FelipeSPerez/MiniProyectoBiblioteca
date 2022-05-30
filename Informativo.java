@@ -1,5 +1,4 @@
 package version01;
-
 public class Informativo extends Libro {
     
     private String fechaPublicacion;
@@ -21,7 +20,7 @@ public class Informativo extends Libro {
  //TOSTRING
     public String displayLibros() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.displayLibros());
+        sb.append(super.getDatos());
         sb.append("Informativo{");
         sb.append("fechaPublicacion=").append(fechaPublicacion);
         sb.append('}');
@@ -29,7 +28,7 @@ public class Informativo extends Libro {
     }
     
     public String EntradaLibros() {
-        return super.EntradaLibros() + "Informativo{" + "fechaPublicacion=" + fechaPublicacion + '}';
+        return super.getDatos() + "Informativo{" + "fechaPublicacion=" + fechaPublicacion + '}';
     }
     
 }
