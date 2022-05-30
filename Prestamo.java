@@ -1,5 +1,3 @@
-package version01;
-
 public class Prestamo {
     
     private Usuario user;
@@ -54,7 +52,7 @@ public class Prestamo {
     }
 
     public String EntradaPrestamo() {
-        return "Prestamo{" + "user=" + user + ", employee=" + employee + ", cantidadLibrosAPrestar=" + cantidadLibrosAPrestar + ", fechaInicioPrestamo=" + fechaInicioPrestamo + ", fechaEsperadaRetorno=" + fechaEsperadaRetorno + "}";
+        return user.getNombre() + "," + employee.getNombre() + "," + cantidadLibrosAPrestar + "," + fechaInicioPrestamo + "," + fechaEsperadaRetorno;
     }
     
     
