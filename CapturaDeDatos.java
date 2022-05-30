@@ -49,7 +49,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombre = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -74,7 +74,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     edad = 0;
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -109,7 +109,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     telefonoFijo = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -139,7 +139,7 @@ public class CapturaDeDatos {
                     e.mensajeExc("Error:\nEstas registrando letras o simbolos en el telefono personal del usuario", "DATO ERRONEO");
                 } catch (Exception e) {
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -164,7 +164,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     error = true;
                     domicilio = "";
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -176,7 +176,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     correoElectronico = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -259,7 +259,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombre = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -267,6 +267,7 @@ public class CapturaDeDatos {
             do {
                 try {
                     edad = leerByte("Introduce la edad del estudiante (OBLIGATORIO):");
+
                     if (edad == 0) {
                         error = true;
                         throw new ExcDatoVacio();
@@ -284,7 +285,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     edad = 0;
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -319,7 +320,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     telefonoFijo = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -349,7 +350,7 @@ public class CapturaDeDatos {
                     e.mensajeExc("Error:\nEstas registrando letras o simbolos en el telefono personal del estudiante", "DATO ERRONEO");
                 } catch (Exception e) {
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -374,7 +375,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     domicilio = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -386,7 +387,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     correoElectronico = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -411,7 +412,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     escuelaProcedencia = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -436,7 +437,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     numeroDeControl = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -522,7 +523,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombre = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -547,7 +548,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     edad = 0;
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEstas ingresando letras donde solo deberias ingresar numeros.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -582,7 +583,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     telefonoFijo = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -612,7 +613,7 @@ public class CapturaDeDatos {
                     e.mensajeExc("Error:\nEstas registrando letras o simbolos en el telefono personal del docente", "DATO ERRONEO");
                 } catch (Exception e) {
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -637,7 +638,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     domicilio = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -649,7 +650,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     correoElectronico = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -674,7 +675,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     institucionProcedencia = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -699,7 +700,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     matricula = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
 
                 }
             } while (error);
@@ -725,7 +726,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     departamento = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
 
                 }
             } while (error);
@@ -795,7 +796,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     titulo = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -829,7 +830,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombreAutor = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -854,7 +855,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombreAutor = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -873,7 +874,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     editorial = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -891,7 +892,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     condicion = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
 
                 //Validacion genero
@@ -908,7 +909,7 @@ public class CapturaDeDatos {
                     } catch (Exception e) {
                         genero = "";
                         error = true;
-                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                     }
                 } while (error);
 
@@ -926,7 +927,7 @@ public class CapturaDeDatos {
                     } catch (Exception e) {
                         clasificacion = "";
                         error = true;
-                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                     }
                 } while (error);
             } while (error);
@@ -977,7 +978,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     titulo = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1011,7 +1012,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombreAutor = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1036,7 +1037,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombreAutor = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1055,7 +1056,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     editorial = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1073,7 +1074,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     condicion = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
 
                 //Validacion fechaPublicacion
@@ -1090,7 +1091,7 @@ public class CapturaDeDatos {
                     } catch (Exception e) {
                         fechaPublicacion = "";
                         error = true;
-                        JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                     }
                 } while (error);
 
@@ -1151,11 +1152,11 @@ public class CapturaDeDatos {
                     e.mensajeExc();
                 } catch (ExcTipoDatoErroneo e) {
                     nombre = "";
-                    e.mensajeExc("Error:\nEstas registrando numeros en el nombre del usuario", "DATO ERRONEO");
+                    e.mensajeExc("Error:\nEstas registrando numeros en el nombre del empleado", "DATO ERRONEO");
                 } catch (Exception e) {
                     nombre = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1173,7 +1174,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     nombre = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1198,7 +1199,7 @@ public class CapturaDeDatos {
                 } catch (Exception e) {
                     turno = "";
                     error = true;
-                    JOptionPane.showMessageDialog(null, "Eror de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
                 }
             } while (error);
 
@@ -1221,17 +1222,312 @@ public class CapturaDeDatos {
         return new Empleado("EL IDE TENIA RAZON", "EL IDE TENIA RAZON", "EL IDE TENIA RAZON");
 
     }
-    
-    public Prestamo getPrestamo() {
+
+    public Prestamo getPrestamo(Comun c, Empleado emp) {
+        boolean error = false, salir = false;
+        short cantidadLibrosAPrestar = 0;
+        String fechaInicioPrestamo = "";
+        String fechaEsperadaRetorno = "";
+        //Los siguientes objetos deben inicializarse como todas las variables anteriores
+        Libro l1 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l2 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+        Libro l3 = new Informativo(fechaInicioPrestamo, fechaEsperadaRetorno, fechaInicioPrestamo, fechaInicioPrestamo, fechaInicioPrestamo, fechaEsperadaRetorno);
+
+        //Ciclo para validacion
+        do {
+
+            //Validacion para la cantidad de libros a prestar
+            do {
+                try {
+                    cantidadLibrosAPrestar = leerShort("Introduce la cantidad de libros a prestar (OBLIGATORIO):");
+                    if (cantidadLibrosAPrestar == 0) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (cantidadLibrosAPrestar < 1) {
+                        error = true;
+                        throw new ExcCantidadLibrosNegativa();
+                    }
+                    if (cantidadLibrosAPrestar > 3) {
+                        error = true;
+                        throw new ExcLimiteLibros();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcCantidadLibrosNegativa e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc();
+                } catch (ExcLimiteLibros e) {
+                    cantidadLibrosAPrestar = 0;
+                    e.mensajeExc("Error:\nUn usuario 'comun' solo puede pedir un maximo de 3 libros.");
+                } catch (Exception e) {
+                    cantidadLibrosAPrestar = 0;
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que estes ingresando letras o simbolos en la cantidad de libros", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha de inicio del prestamo
+            do {
+                try {
+                    fechaInicioPrestamo = leerCadena("Introduce la fecha de incio del prestamo (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaInicioPrestamo.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaInicioPrestamo.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaInicioPrestamo.charAt(2) != '/' || fechaInicioPrestamo.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaInicioPrestamo = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaInicioPrestamo = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Validacion para la fecha esperada de retorno
+            do {
+                try {
+                    fechaEsperadaRetorno = leerCadena("Introduce la fecha de incio del prestamo (OBLIGATORIO)\nOJO: Introduce la fecha en el siguiente formato: DD/MM/AAAA:");
+                    if (fechaEsperadaRetorno.isBlank()) {
+                        error = true;
+                        throw new ExcDatoVacio();
+                    }
+                    if (fechaEsperadaRetorno.length() != 10) {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    if (fechaEsperadaRetorno.charAt(2) != '/' || fechaEsperadaRetorno.charAt(5) != '/') {
+                        error = true;
+                        throw new ExcErrorFormatoFecha();
+                    }
+                    error = false;
+                } catch (ExcDatoVacio e) {
+                    e.mensajeExc();
+                } catch (ExcErrorFormatoFecha e) {
+                    fechaEsperadaRetorno = "";
+                    e.mensajeExc();
+                } catch (Exception e) {
+                    fechaEsperadaRetorno = "";
+                    error = true;
+                    JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName(), "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (error);
+
+            //Ciclo para la introduccion de datos de cada libro a prestar
+            byte tipo;
+            switch (cantidadLibrosAPrestar) {
+                case 1:
+                    //Ciclo para preguntar el tipo del libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es el libro a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 2:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+
+                case 3:
+                    //Ciclo para preguntar el tipo del primer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL PRIMER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l1 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l1 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del segundo libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL SEGUNDO LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l2 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l2 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    //Ciclo para preguntar el tipo del tercer libro a prestar y leer sus datos
+                    do {
+                        try {
+                            tipo = leerByte("TIPOS DE LIBRO:\n\n1- Literario\n2- Informativo\n\n¿Que tipo de libro es EL TERCER LIBRO a registrar?:");
+                            if (tipo != 1 && tipo != 2) {
+                                error = true;
+                                throw new ExcTipoLibroIncorrecto();
+                            }
+                            error = false;
+                            if (tipo == 1) {
+                                l3 = this.getLiterario();
+                            }
+                            if (tipo == 2) {
+                                l3 = this.getInformativo();
+                            }
+                        } catch (ExcTipoLibroIncorrecto e) {
+                            tipo = 0;
+                            e.mensajeExc();
+                        } catch (Exception e) {
+                            tipo = 0;
+                            error = true;
+                            JOptionPane.showMessageDialog(null, "Error de tipo: " + e.getClass().getSimpleName() + "\nEs probable que hayas ingresado letras o simbolos en la opcion de libro.", "Excepcion de java", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (error);
+                    break;
+            }
+
+            //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
+            //en caso de decir si sigue con la ejecucion y retorna el objeto
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + c.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                salir = false;
+            } else {
+                salir = true;
+                switch (cantidadLibrosAPrestar) {
+                    case 1:
+                        Prestamo p = new Prestamo(c, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1);
+                        return p;
+                    case 2:
+                        Prestamo p1 = new Prestamo(c, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2);
+                        return p1;
+                    case 3:
+                        Prestamo p2 = new Prestamo(c, emp, cantidadLibrosAPrestar, fechaInicioPrestamo, fechaEsperadaRetorno, l1, l2, l3);
+                        return p2;
+                }
+            }
+
+        } while (!salir);
         
+        //Este return no sirve de nada, solo es para que java no se asuste, al parecer el IDE
+        //piensa que hay forma en que el programa no retorne nada.
+        //Los valores guardados son para detectar ese posible camino que retorne este objeto (Pero no deberia pasar)
+        return new Prestamo(c, emp, cantidadLibrosAPrestar, "EL IDE TENIA RAZON", "EL IDE TENIA RAZON", l1);
     }
-    
+
+//    public Prestamo getPrestamo(Estudiante e, Empleado emp) {
+//        
+//    }
+//
+//    public Prestamo getPrestamo(Docente d, Empleado emp) {
+//        
+//    }
     private byte leerByte(String msg) {
         return Byte.parseByte(JOptionPane.showInputDialog(msg));
     }
 
     private String leerCadena(String msg) {
         return JOptionPane.showInputDialog(msg);
+    }
+
+    private short leerShort(String msg) {
+        return Short.parseShort(JOptionPane.showInputDialog(msg));
     }
 
 }
