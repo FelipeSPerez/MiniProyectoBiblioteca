@@ -1,5 +1,4 @@
 
-
 import javax.swing.JOptionPane;
 
 public class ExcTipoLibroIncorrecto extends Exception {

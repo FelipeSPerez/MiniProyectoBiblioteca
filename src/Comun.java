@@ -1,5 +1,4 @@
 
-
 public class Comun extends Usuario implements Persona {
     //COMUN - REQUIERE UNICAMENTE DATOS POR HERENCIA
 

@@ -1,5 +1,4 @@
 
-
 public class Literario extends Libro {
     //Atributos
     private String genero;

@@ -22,7 +22,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Nombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nNombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -72,7 +72,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Nombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\nEscuela de procedencia: " + escuelaProcedencia + "\nNumero de control: " + numeroDeControl + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nNombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\nEscuela de procedencia: " + escuelaProcedencia + "\nNumero de control: " + numeroDeControl + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -122,7 +122,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Nombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\nInstitucion de procedencia: " + institucionProcedencia + "\nMatricula: " + matricula + "\nDepartamento: " + departamento + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nNombre: " + nombre + "\nEdad: " + edad + "\nTelefono fijo: " + telefonoFijo + "\nTelefono personal: " + telefonoPersonal + "\nDomicilio: " + domicilio + "\nCorreo electronico: " + correoElectronico + "\nInstitucion de procedencia: " + institucionProcedencia + "\nMatricula: " + matricula + "\nDepartamento: " + departamento + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -171,7 +171,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Titulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nGenero: " + genero + "\nClasificacion: " + clasificacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nTitulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nGenero: " + genero + "\nClasificacion: " + clasificacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -203,7 +203,7 @@ public class CapturaDeDatos {
             //Validacion fechaPublicacion
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Titulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nFecha de publicacion: " + fechaPublicacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nTitulo: " + titulo + "\nAutor: " + nombreAutor + "\nISBN: " + isbn + "\nEditorial: " + editorial + "\nCondicion: " + condicion + "\nFecha de publicacion: " + fechaPublicacion + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -231,7 +231,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Nombre: " + nombre + "\nPuesto: " + puesto + "\nTurno: " + turno + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nNombre: " + nombre + "\nPuesto: " + puesto + "\nTurno: " + turno + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -280,7 +280,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + cmn.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nUsuario: " + cmn.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -352,7 +352,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + est.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nUsuario: " + est.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {
@@ -448,7 +448,7 @@ public class CapturaDeDatos {
 
             //Pregunta para confirmar los datos ingresados, en caso de darle "No" vuelve a pedir todos los datos,
             //en caso de decir si sigue con la ejecucion y retorna el objeto
-            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\n" + "Usuario: " + dct.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\nLibro 6: " + l6.getTitulo() + "\nLibro 7: " + l7.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "OJO: Datos a registrar:\n\nUsuario: " + dct.getNombre() + "\nEmpleado: " + emp.getNombre() + "\nCantidad de libros a prestar: " + cantidadLibrosAPrestar + "\nLibro 1: " + l1.getTitulo() + "\nLibro 2: " + l2.getTitulo() + "\nLibro 3: " + l3.getTitulo() + "\nLibro 4: " + l4.getTitulo() + "\nLibro 5: " + l5.getTitulo() + "\nLibro 6: " + l6.getTitulo() + "\nLibro 7: " + l7.getTitulo() + "\n\n¿DESEA CONTINUAR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.NO_OPTION) {
                 salir = false;
             } else {

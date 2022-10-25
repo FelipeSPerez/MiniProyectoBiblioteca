@@ -1,5 +1,4 @@
 
-
 import java.io.Serializable;
 
 public class Empleado implements Persona, Serializable {

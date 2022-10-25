@@ -10,12 +10,9 @@ public class Informativo extends Libro {
     }
     
     //GETTERS
-
     public String getFechaPublicacion() {
         return fechaPublicacion;
     }
-    
-   
     
  //TOSTRING
     public String displayLibros() {

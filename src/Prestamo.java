@@ -1,5 +1,4 @@
 
-
 public class Prestamo {
 
     //Atributos

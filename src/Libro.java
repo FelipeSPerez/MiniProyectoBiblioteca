@@ -1,5 +1,4 @@
 
-
 public abstract class Libro {
     //Atributos 
     private String titulo;

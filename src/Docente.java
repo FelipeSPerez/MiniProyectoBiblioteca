@@ -1,5 +1,4 @@
 
-
 public class Docente extends Usuario implements Persona {
     //DOCENTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 

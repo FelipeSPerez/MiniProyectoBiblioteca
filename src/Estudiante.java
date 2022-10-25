@@ -1,5 +1,4 @@
 
-
 public class Estudiante extends Usuario implements Persona {
     //ESTUDIANTE - REQUIERE DATOS POR HERENCIA y ATRIBUTOS PROPIOS
 
